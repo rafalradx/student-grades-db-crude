@@ -59,7 +59,7 @@ def random_date(start_date, end_date):
     return random_date
 
 
-if __name__ == "__main__":
+def main(*arg):
     fake_students_names = generate_fake_data(NUMBER_STUDENTS)
     groups_to_db = [Group(name=group) for group in GROUPS]
     lecturers_to_db = [Lecturer(name=lecturer) for lecturer in LECTURERS]
@@ -91,3 +91,7 @@ if __name__ == "__main__":
         groups_to_db + lecturers_to_db + students_to_db + subjects_to_db + grades_to_db
     )
     session.commit()
+
+
+if __name__ == "__main__":
+    main()

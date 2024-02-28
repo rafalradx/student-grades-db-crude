@@ -2,6 +2,7 @@ from myparser import myparser
 from db_models import session, Group, Lecturer, Student, Subject, Grade
 from argparse import Namespace
 from datetime import date
+from seed import main
 
 MODELS_MAP = {
     "Group": Group,
@@ -15,40 +16,29 @@ MODELS_MAP = {
 def create(args: Namespace) -> None:
     model = args.model
     if model == "Group":
-        group = Group(name=args.name)
-        session.add(group)
-        session.commit()
-        return
-    if model == "Student":
+        obj = Group(name=args.name)
+    elif model == "Student":
         group_ID = args.id[0]
-        student = Student(name=args.name, group_id=group_ID)
-        session.add(student)
-        session.commit()
-        return
-    if model == "Teacher":
+        obj = Student(name=args.name, group_id=group_ID)
+    elif model == "Teacher":
         group_ID = args.id[0]
-        lecturer = Lecturer(name=args.name)
-        session.add(lecturer)
-        session.commit()
-        return
-    if model == "Subject":
+        obj = Lecturer(name=args.name)
+    elif model == "Subject":
         lecturer_ID = args.id[0]
-        subject = Subject(name=args.name, lecturer_id=lecturer_ID)
-        session.add(subject)
-        session.commit()
-    if model == "Grade":
+        obj = Subject(name=args.name, lecturer_id=lecturer_ID)
+    elif model == "Grade":
         student_ID = args.id[0]
         subject_ID = args.id[1]
         date_of_grade = args.date
         date_of = date(*map(int, date_of_grade.split("-")))
-        grade = Grade(
+        obj = Grade(
             value=args.value,
             student_id=student_ID,
             subject_id=subject_ID,
             date_of=date_of,
         )
-        session.add(grade)
-        session.commit()
+    session.add(obj)
+    session.commit()
 
 
 def delete(args: Namespace) -> None:
@@ -85,6 +75,7 @@ ACTIONS_MAP = {
     "update": update,
     "delete": delete,
     "list": list_all,
+    "seed": main,
 }
 
 if __name__ == "__main__":

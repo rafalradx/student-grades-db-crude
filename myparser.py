@@ -8,7 +8,7 @@ myparser.add_argument(
     "-a",
     "--action",
     type=str,
-    choices=["create", "read", "update", "delete", "list"],
+    choices=["create", "read", "update", "delete", "list", "seed"],
     required=True,
     help="Specify db action",
 )
