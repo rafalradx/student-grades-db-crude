@@ -96,7 +96,6 @@ def select_7(gr_id, subj_id):
 def select_8(id):
     results = (
         session.query(
-            Lecturer.name,
             Subject.name,
             func.round(func.avg(Grade.value), 3).label("avg_grade"),
         )
@@ -137,8 +136,6 @@ def select_11(stud_id, lect_id):
     results = (
         session.query(
             func.round(func.avg(Grade.value), 3).label("avg_grade"),
-            Student.name.label("student"),
-            Lecturer.name.label("lecturer"),
         )
         .select_from(Grade)
         .join(Student)
@@ -148,9 +145,7 @@ def select_11(stud_id, lect_id):
         .where(Lecturer.id == lect_id)
     )
     for res in results:
-        print(
-            f"avr. grade = {res.avg_grade} given to: {res.student} by: {res.lecturer}"
-        )
+        print(f"avr. grade = {res.avg_grade}")
 
 
 # Oceny studentów w określonej grupie z określonego przedmiotu na ostatnich zajęciach.
@@ -190,8 +185,8 @@ if __name__ == "__main__":
     select_5(1)
     select_6(1)
     select_7(1, 3)
-    select_8(3)
+    select_8(1)
     select_9()
-    select_10(8, 3)
+    select_10(12, 2)
     select_11(2, 2)
     select_12(2, 4)

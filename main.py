@@ -80,5 +80,4 @@ ACTIONS_MAP = {
 
 if __name__ == "__main__":
     myargs = myparser.parse_args()
-    print(myargs)
     ACTIONS_MAP[myargs.action](myargs)
