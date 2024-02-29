@@ -1,4 +1,2 @@
 __pycache__
 test.db
-alembic.txt
-docker_postgres.txt
