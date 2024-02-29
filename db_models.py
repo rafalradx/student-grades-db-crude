@@ -14,12 +14,7 @@ from datetime import datetime
 
 from sqlalchemy.orm import sessionmaker, declarative_base, relationship
 
-# engine = create_engine("sqlite:///test.db", echo=False)
 
-engine = create_engine("postgresql://postgres:123abc@localhost:5432/postgres")
-
-DBSession = sessionmaker(bind=engine)
-session = DBSession()
 Base = declarative_base()
 
 
@@ -64,7 +59,3 @@ class Grade(Base):
     date_of = Column(Date(), nullable=False)
     student = relationship("Student", back_populates="grades")
     subject = relationship("Subject", back_populates="grades")
-
-
-Base.metadata.create_all(engine)
-Base.metadata.bind = engine

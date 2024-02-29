@@ -1,5 +1,6 @@
 from myparser import myparser
-from db_models import session, Group, Lecturer, Student, Subject, Grade
+from db_models import Group, Lecturer, Student, Subject, Grade
+from db_connect import session
 from argparse import Namespace
 from datetime import date
 from seed import main

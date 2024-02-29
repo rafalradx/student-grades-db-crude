@@ -1,4 +1,5 @@
-from db_models import session, Group, Lecturer, Student, Subject, Grade
+from db_models import Group, Lecturer, Student, Subject, Grade
+from db_connect import session
 
 import faker
 from random import randint, choice

@@ -1,4 +1,5 @@
-from db_models import session, Group, Lecturer, Student, Subject, Grade
+from db_models import Group, Lecturer, Student, Subject, Grade
+from db_connect import session
 from datetime import datetime
 
 # this is for testing purpose only
